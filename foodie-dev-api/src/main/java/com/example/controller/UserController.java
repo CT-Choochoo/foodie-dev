@@ -22,7 +22,7 @@ public class UserController {
   @Autowired UsersService usersService;
 
   @GetMapping("/list")
-  public List<Users> list(@RequestParam("name") String name) {
+  public List<Users> list(@RequestParam(name = "name" ,required = false) String name) {
     return usersService.list(name);
   }
 

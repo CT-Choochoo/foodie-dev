@@ -6,4 +6,5 @@ import com.example.pojo.Stu;
 public interface StuService extends IService<Stu>{
 
 
+  void saveChildren();
 }
