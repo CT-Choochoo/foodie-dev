@@ -1,0 +1,15 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/workspace.xml
+foodie-dev.iml
+.idea/libraries/
+foodie-dev-api/target/
+foodie-dev-common/target/
+foodie-dev-mapper/target/
+foodie-dev-pojo/target/
+foodie-dev-service/target/
+.idea/
+foodie-dev-api/foodie-dev-api.iml
+foodie-dev-common/foodie-dev-common.iml
+foodie-dev-mapper/foodie-dev-mapper.iml
+foodie-dev-pojo/foodie-dev-pojo.iml
+foodie-dev-service/foodie-dev-service.iml
