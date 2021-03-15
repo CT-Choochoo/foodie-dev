@@ -12,4 +12,12 @@ public interface UsersService extends IService<Users>{
    * @return
    */
   List<Users> list(String name);
+
+  /**
+   * 查询用户名是否存在
+   *
+   * @param username
+   * @return
+   */
+  Boolean usernameIsExist(String username);
 }
