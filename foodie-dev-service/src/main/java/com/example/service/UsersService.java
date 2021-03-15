@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.pojo.Users;
+import com.example.vo.UserVO;
 import java.util.List;
 
 public interface UsersService extends IService<Users>{
@@ -20,4 +21,11 @@ public interface UsersService extends IService<Users>{
    * @return
    */
   Boolean usernameIsExist(String username);
+
+  /**
+   * 保存用户
+   * @param users
+   * @return
+   */
+  Users saveUser(UserVO users);
 }
