@@ -1,18 +1,23 @@
 package com.example.vo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.StringJoiner;
-
+@ApiModel
 public class UserVO  implements Serializable {
 
 
   private static final long serialVersionUID = 2016247254418250644L;
 
   /** 用户名 */
+  @ApiModelProperty(value = "用户名" ,name = "username",example = "xiIj")
   private String username;
 
   /** 密码 */
+  @ApiModelProperty(value = "密码" ,name = "password",example = "123456")
   private String password;
+  @ApiModelProperty(value = "确认密码" ,name = "confirmPassword",example = "123456")
   private String confirmPassword;
 
 

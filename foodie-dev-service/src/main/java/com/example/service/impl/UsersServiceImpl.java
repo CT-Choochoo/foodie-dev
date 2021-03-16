@@ -5,6 +5,7 @@ import com.example.enums.Sex;
 import com.example.mapper.UsersMapper;
 import com.example.pojo.Users;
 import com.example.service.UsersService;
+import com.example.utils.MD5Utils;
 import com.example.vo.UserVO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -40,7 +41,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
   public Boolean usernameIsExist(String username) {
     Integer integer =
         usersMapper.selectCount(new LambdaQueryWrapper<Users>().eq(Users::getUsername, username));
-    return integer.equals(0);
+    return !integer.equals(0);
   }
 
   private static final String FACE_IMG_URL = "http://11sd5.com/sf/svcxcv";
@@ -52,11 +53,11 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
    */
   @Override
   @Transactional(rollbackFor = Exception.class)
-  public Users saveUser(UserVO userVO) {
+  public Users saveUser(UserVO userVO) throws Exception {
     Users user = new Users();
     user.setId(sid.nextShort());
     user.setUsername(userVO.getUsername());
-    user.setPassword(DigestUtils.md5DigestAsHex(userVO.getPassword().getBytes()));
+    user.setPassword(MD5Utils.getMD5Str(userVO.getPassword()));
     user.setNickname(userVO.getUsername());
     user.setFace(FACE_IMG_URL);
     user.setSex(Sex.secret.type);
@@ -65,5 +66,18 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     user.setCreatedTime(LocalDateTime.now());
     usersMapper.insert(user);
     return user;
+  }
+
+  /**
+   * 验证登录
+   * @param username 用户名
+   * @param md5Str
+   * @return
+   */
+  @Override
+  public Users queryUserForLogin(String username, String md5Str) {
+    return usersMapper.selectOne(
+        new LambdaQueryWrapper<Users>().eq(Users::getUsername, username)
+            .eq(Users::getPassword, md5Str));
   }
 }

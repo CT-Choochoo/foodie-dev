@@ -6,6 +6,7 @@ import com.example.vo.UserVO;
 import com.example.pojo.Users;
 import com.example.service.UsersService;
 import com.example.utils.JSONResult;
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,43 +37,7 @@ public class UserController {
     return usersService.getById(id);
   }
 
-  @PostMapping("/register")
-  public JSONResult add(
-      @RequestBody UserVO userVO, HttpServletRequest request, HttpServletResponse response) {
-    String username = userVO.getUsername();
-    String password = userVO.getPassword();
-    String confirmPwd = userVO.getConfirmPassword();
 
-    // 0. 判断用户名和密码必须不为空
-    if (StringUtils.isBlank(username)
-        || StringUtils.isBlank(password)
-        || StringUtils.isBlank(confirmPwd)) {
-      return JSONResult.errorMsg("用户名或密码不能为空");
-    }
-
-    // 1. 查询用户名是否存在
-    boolean isExist = usersService.usernameIsExist(username);
-    if (isExist) {
-      return JSONResult.errorMsg("用户名已经存在");
-    }
-
-    // 2. 密码长度不能少于6位
-    if (password.length() < 6) {
-      return JSONResult.errorMsg("密码长度不能少于6");
-    }
-
-    // 3. 判断两次密码是否一致
-    if (!password.equals(confirmPwd)) {
-      return JSONResult.errorMsg("两次密码输入不一致");
-    }
-
-    // 4. 实现注册
-    Users users = usersService.saveUser(userVO);
-    users = setNullProperty(users);
-
-    CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(users), true);
-    return JSONResult.ok();
-  }
 
   @PutMapping("/update")
   public void update(@RequestBody Users users) {
@@ -84,13 +49,4 @@ public class UserController {
     usersService.removeById(id);
   }
 
-  private Users setNullProperty(Users userResult) {
-    userResult.setPassword(null);
-    userResult.setMobile(null);
-    userResult.setEmail(null);
-    userResult.setCreatedTime(null);
-    userResult.setUpdatedTime(null);
-    userResult.setBirthday(null);
-    return userResult;
-  }
 }

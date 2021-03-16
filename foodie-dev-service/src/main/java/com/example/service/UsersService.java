@@ -27,5 +27,7 @@ public interface UsersService extends IService<Users>{
    * @param users
    * @return
    */
-  Users saveUser(UserVO users);
+  Users saveUser(UserVO users) throws Exception;
+
+  Users queryUserForLogin(String username, String md5Str);
 }
