@@ -2,9 +2,11 @@ package com.example.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.enums.Sex;
+import com.example.exception.BusinessException;
 import com.example.mapper.UsersMapper;
 import com.example.pojo.Users;
 import com.example.service.UsersService;
+import com.example.utils.JSONResult;
 import com.example.utils.MD5Utils;
 import com.example.vo.UserVO;
 import java.time.LocalDate;
@@ -54,6 +56,11 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
   @Override
   @Transactional(rollbackFor = Exception.class)
   public Users saveUser(UserVO userVO) throws Exception {
+    // 1. 查询用户名是否存在
+    boolean isExist = this.usernameIsExist(userVO.getUsername());
+    if (isExist) {
+      throw new BusinessException("查询用户已存在！");
+    }
     Users user = new Users();
     user.setId(sid.nextShort());
     user.setUsername(userVO.getUsername());
