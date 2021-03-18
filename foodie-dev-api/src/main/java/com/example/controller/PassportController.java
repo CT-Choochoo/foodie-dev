@@ -95,6 +95,7 @@ public class PassportController {
     CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(users), true);
     return JSONResult.ok();
   }
+
   @ApiOperation(value = "用户退出登录", notes = "用户退出登录", httpMethod = "POST")
   @PostMapping("/logout")
   public JSONResult logout(@RequestParam String userId,
