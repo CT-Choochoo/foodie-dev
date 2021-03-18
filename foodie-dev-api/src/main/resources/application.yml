@@ -32,10 +32,12 @@ mybatis-plus:
     #逻辑删除配置
     logic-delete-value: 1
     logic-not-delete-value: 0
+
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
     call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 # 输出sql语句，可将语句所在包设置成debug模式
 logging:
   level:
