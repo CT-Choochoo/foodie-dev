@@ -5,15 +5,15 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
-public class Swagger2 {
+@EnableOpenApi
+public class Swagger3 {
 
   //    http://localhost:8088/swagger-ui.html     原路径
   //    http://localhost:8088/doc.html     原路径
@@ -23,10 +23,11 @@ public class Swagger2 {
    */
   @Bean
   public Docket createRestApi() {
-    // 指定api类型为swagger2
-    return new Docket(DocumentationType.SWAGGER_2)
+    // 指定api类型为swagger3
+    return new Docket(DocumentationType.OAS_30)
         // 用于定义api文档汇总信息
         .apiInfo(apiInfo())
+        .enable(true)
         .select()
         // 指定controller包
         .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
@@ -35,18 +36,19 @@ public class Swagger2 {
         .build();
   }
 
+
   private ApiInfo apiInfo() {
     return new ApiInfoBuilder()
         // 文档页标题
         .title("foodie接口api")
         // 联系人信息
-        .contact(new Contact("imooc", "https://www.imooc.com", "abc@imooc.com"))
+        .contact(new Contact("高建国", "https://www.baidu.com", "304590126@qq.com"))
         // 详细信息
-        .description("专为天天吃货提供的api文档")
+        .description("接口文档说明信息")
         // 文档版本号
         .version("1.0.1")
         // 网站地址
-        .termsOfServiceUrl("https://www.imooc.com")
+        .termsOfServiceUrl("https://www.xxxxx.com")
         .build();
   }
 }
