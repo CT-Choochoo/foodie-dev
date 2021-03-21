@@ -42,3 +42,7 @@ mybatis-plus:
 logging:
   level:
     com.example.mapper: DEBUG
+# 分页插件配置
+pagehelper:
+  helperDialect:
+    mysql supportMethodsArguments: true
