@@ -81,10 +81,6 @@ public class ItemsServiceImpl extends ServiceImpl<ItemsMapper, Items> implements
             .eq(Objects.nonNull(level), ItemsComments::getCommentLevel, level));
   }
 
-  @Override
-  public PagedGridResult searchItems(String keywords, String sort, Integer page, Integer pageSize) {
-    return null;
-  }
 
   @Override
   public PagedGridResult queryPagedComments(
@@ -94,6 +90,11 @@ public class ItemsServiceImpl extends ServiceImpl<ItemsMapper, Items> implements
 
   @Override
   public List<ShopcartVO> queryItemsBySpecIds(String itemSpecIds) {
+    return null;
+  }
+
+  @Override
+  public PagedGridResult searchItems(Integer catId, String sort, Integer page, Integer pageSize) {
     return null;
   }
 }
