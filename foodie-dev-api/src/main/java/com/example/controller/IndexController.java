@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/index")
 public class IndexController {
 
-  private final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
   @Autowired CarouselService carouselService;
   @Autowired CategoryService categoryService;
