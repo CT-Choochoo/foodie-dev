@@ -1,6 +1,6 @@
 package com.example.vo;
 
-public class OrderItemsCommentBO {
+public class OrderItemsCommentDTO {
 
     private String commentId;
     private String itemId;

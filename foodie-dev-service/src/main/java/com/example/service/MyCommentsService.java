@@ -2,7 +2,7 @@ package com.example.service;
 
 
 import com.example.utils.PagedGridResult;
-import com.example.vo.OrderItemsCommentBO;
+import com.example.vo.OrderItemsCommentDTO;
 import java.util.List;
 
 public interface MyCommentsService {
@@ -14,7 +14,7 @@ public interface MyCommentsService {
      * @param userId
      * @param commentList
      */
-    void saveComments(String orderId, String userId, List<OrderItemsCommentBO> commentList);
+    void saveComments(String orderId, String userId, List<OrderItemsCommentDTO> commentList);
 
 
     /**
